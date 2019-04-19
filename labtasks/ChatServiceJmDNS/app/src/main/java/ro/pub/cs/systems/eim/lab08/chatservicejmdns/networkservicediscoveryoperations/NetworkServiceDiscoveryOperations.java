@@ -158,6 +158,7 @@ public class NetworkServiceDiscoveryOperations {
 
     }
 
+
     public void registerNetworkService(int port) throws Exception {
         Log.i(Constants.TAG, "Register network service on port " + port);
         chatServer = new ChatServer(this, port);
@@ -180,7 +181,13 @@ public class NetworkServiceDiscoveryOperations {
         }
 	// question 5d
 	// set the title of the activity to the advertised service name
-	// Log name, type and port 
+	// Log name, type and port
+        chatActivity.setTitle(serviceInfo.getName());
+        Log.i(Constants.TAG, "Register service " +
+                serviceInfo.getName() + ":" +
+                serviceInfo.getTypeWithSubtype() + ":" +
+                serviceInfo.getPort()
+        );
     }
 
     public void unregisterNetworkService() {
@@ -198,6 +205,7 @@ public class NetworkServiceDiscoveryOperations {
         chatActivity.setConversations(conversations);
         // question 5d
 	// reset the title to default when not advertising anything
+        chatActivity.setTitle("Chat Service JmDNS");
     }
 
     public void startNetworkServiceDiscovery() {
